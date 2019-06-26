@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "servicenowapi", "servicenowapi\servicenowapi.csproj", "{C49660A6-EA8A-4EF4-87AF-73902A181C21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C49660A6-EA8A-4EF4-87AF-73902A181C21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C49660A6-EA8A-4EF4-87AF-73902A181C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C49660A6-EA8A-4EF4-87AF-73902A181C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C49660A6-EA8A-4EF4-87AF-73902A181C21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C60C18E-7A90-4E52-949B-B4547EFDD4CD}
+	EndGlobalSection
+EndGlobal
