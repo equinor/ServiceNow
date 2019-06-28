@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using servicenowapi.Models;
+using System.IO;
 
 namespace servicenowapi.Handlers
 {
@@ -48,12 +49,27 @@ namespace servicenowapi.Handlers
             return authHeader;
         }
 
+        private JToken FormatData(JToken values)
+        {
+            foreach (var row in values)
+            {
+                foreach (dynamic column in row)
+                {
+                    string name = column.Name;
+                    string item = column.Value.ToString();
+                    if (string.IsNullOrWhiteSpace(item))
+                        row[name] = null;
+                }
+            }
+            return values;
+
+        }
+
         public async Task<ServiceNowData> GetDataAsync(string uri, string hostname)
         {
             string nextLink;
             var response = await ServiceNowHttpClient.GetAsync(uri);
-            var content = await response.Content.ReadAsStringAsync();
-            var x = response.Content;
+            string content = await response.Content.ReadAsStringAsync();
 
             if(response.Headers.TryGetValues("Link", out IEnumerable<string> headers))
             {
@@ -64,11 +80,12 @@ namespace servicenowapi.Handlers
             {
                 nextLink = null;
             }
-
-            var values = JsonConvert.DeserializeObject<JToken>(content)["result"];
+            var values = FormatData(JsonConvert.DeserializeObject<JToken>(content)["result"]);
+              
             ServiceNowData result = new ServiceNowData(values, nextLink);
             return result;
         }
+
 
     }
 }
