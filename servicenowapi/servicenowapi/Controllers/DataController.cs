@@ -13,7 +13,7 @@ namespace servicenowapi.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    [Produces("application/json;charset=utf-8")]
+    [Produces("application/json")]
     public class DataController : ControllerBase
     {
         private readonly string _username;
