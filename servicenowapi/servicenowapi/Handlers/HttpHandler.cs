@@ -70,6 +70,7 @@ namespace servicenowapi.Handlers
             string nextLink;
             var response = await ServiceNowHttpClient.GetAsync(uri);
             string content = await response.Content.ReadAsStringAsync();
+            content = UTF8String(content);
 
             if(response.Headers.TryGetValues("Link", out IEnumerable<string> headers))
             {
@@ -86,6 +87,11 @@ namespace servicenowapi.Handlers
             return result;
         }
 
+        private string UTF8String(string content)
+        {
+            byte[] bytes = Encoding.Default.GetBytes(content);
+            return Encoding.UTF8.GetString(bytes);
+        }
 
     }
 }

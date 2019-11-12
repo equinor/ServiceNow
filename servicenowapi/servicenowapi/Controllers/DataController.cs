@@ -12,7 +12,8 @@ namespace servicenowapi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
+    [Produces("application/json")]
     public class DataController : ControllerBase
     {
         private readonly string _username;
@@ -33,6 +34,7 @@ namespace servicenowapi.Controllers
             if (!string.IsNullOrEmpty(sysparm_query))
                 uri += $"&sysparm_query={sysparm_query}";
             var result = await handler.GetDataAsync(uri, hostname);
+            Response.Headers.TryAdd("Content-Type", "application/json;charset=utf-8");
             Response.Headers.TryAdd("NextLink", result.NextLink);
             return Ok(result.Data);
 
